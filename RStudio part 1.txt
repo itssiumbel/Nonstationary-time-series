@@ -1,0 +1,120 @@
+k=10
+x=read.csv2("C:\\Users\\Пользователь\\Desktop\\диплом\\ex.csv")[[1]]
+
+cov=function(x,k){
+ N=length(x)
+ cov=0
+ for(i in 1:(N-k)){
+ cov=cov+x[i]*x[i+k]
+ }
+ cov=cov/(N-k)
+ cov
+}
+cov(x,10)
+cor=function(x,k){
+ return(cov(x,k)/cov(x,0))
+}
+cor(x,10)
+
+
+k=2
+b=c()
+for (i in 1:k){
+ b=c(b,cov(x,i))
+}
+b
+a=matrix(nrow=k, ncol=k, 0)
+for(i in 1:k){
+ for(j in 1:k){
+ a[i,j]=cor(x, abs(i-j))
+ }
+}
+a
+
+
+s=eigen(a, symmetric = TRUE, only.values = TRUE)
+s
+
+
+plot(x, type = 'l')
+x
+N=length(x)
+k=10
+
+
+cov=function(x,k){
+ N=length(x)
+ cov=0
+ for(i in 1:(N
+-k)){
+ cov=cov+x[i]*x[i+k]
+ 
+}
+ cov=cov/(N-k)
+ cov }
+cor=function(x,k){
+ return(cov(x,k)/cov(x,0)) }
+y=c(x[1],x[2]
+-x[1])
+for(i in 3:N){
+ y=c(y,x[i]-x[i-1])
+}
+fi=c()
+for(i in 1:k){
+ fi[i]=cor(y,i) }
+r=c()
+for(i in 1:k){
+ r[i]=cor(x,i) }
+
+plot(abs(r),type='l')
+plot(abs(fi),type='l')
+
+y1=c(y[1],y[2]-2*y[1])
+for(i in 3:N){
+ y1=c(y1,y[i]-y[i-1])
+}
+fi1=c()
+for(i in 1:k){
+ fi1[i]=cor(y1,i) }
+
+plot(abs(fi1),type='l')
+y2=c(y1[1],y1[2]-2*y1[1])
+for(i in 3:N){
+ y2=c(y2,y1[i]-2*y1[i-1]+y1[i-2])
+}
+r1=c()
+
+
+for(i in 1:k){
+ r1[i]=cor(y2,i)
+}
+plot(abs(r1),type='l')
+k=10
+
+x2=read.csv2("C:\\Users\\Пользователь\\Desktop\\диплом\\2z.csv")[[1]]
+
+cov=function(x2,k){
+ N=length(x)
+ cov=0
+ for(i in 1:(N-k)){
+ cov=cov+x[i]*x[i+k]
+ }
+ cov=cov/(N-k)
+ cov
+}
+cov(x2,10)
+cor=function(x2,k){
+ return(cov(x2,k)/cov(x,0))
+}
+cor(x,10)
+n=length(x2)
+d=-(1/cor(x2,1))^2+4
+t=-(1/cor(x2,1))+sqrt(d)
+teta=t/2
+dis=cov(x2,0)/(1+teta^2)
+x1=3
+xx=c(x1,teta1*x1+dis)
+for(i in 1:n){
+ xx=c(x,teta1*x2[i-1]+dis)
+}
+xx
