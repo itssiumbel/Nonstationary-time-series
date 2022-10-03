@@ -1,0 +1,85 @@
+#AR
+x1=read.csv2("C:\\Users\\Пользователь\\Desktop\\диплом\\aelin.csv")[[1]]
+#x1<-x1[[1]]
+n=length(x1)
+fi1=cor(x1,1)*(1-cor(x1,2))/(1-cor(x1,1)*cor(x1,1))
+fi2=(cor(x1,2)-cor(x1,1)*cor(x1,1))/(1-cor(x1,1)*cor(x1,1))
+dis=cov(x1,0)-fi1*cov(x1,1)
+28
+fi1
+fi2
+dis
+xx1=c(x1,f1*x1+dis)
+for(i in 1:n){
+ xx1=c(x,fi1*x1[i-1]+dis)
+}
+xx1
+
+#ARMA(1,1)
+x3=read.csv2("C:\\Users\\Пользователь\\Desktop\\диплом\\aelin.csv")[[1]]
+#x3<-x3[[1]]
+n=length(x3)
+fii1=cov(x3,2)/cov(x3,1)
+cw0=(1+fii1^2)*cov(x3,0)-2*fii1*cov(x3,1)
+cw1=cov(x3,1)-fii1*cov(x3,2)-fii1*cov(x3,0)+fii1^2*cov(x3,1)
+tteta1=(-cw0/cw1-sqrt((cw0/cw1)^2-4))/2
+tteta2=(-cw0/cw1+sqrt((cw0/cw1)^2-4))/2#не подходит, тк по модулю должно 
+быть <1
+dis3=cw0/(1+tteta1^2)
+fii1
+x1=3
+yy=c(x1,fii1*x1+dis3-tteta1*x1)
+for(i in 1:n){
+ yy=c(x,fii1*x3[i-1]-tteta1*x2[i-1]+dis3)
+}
+yy
+
+#AR
+x1=read.csv2("C:\\Users\\Пользователь\\Desktop\\диплом\\qw.csv")[[1]]
+#x1<-x1[[1]]
+n=length(x1)
+fi1=cor(x1,1)*(1-cor(x1,2))/(1-cor(x1,1)*cor(x1,1))
+fi2=(cor(x1,2)-cor(x1,1)*cor(x1,1))/(1-cor(x1,1)*cor(x1,1))
+dis=cov(x1,0)-fi1*cov(x1,1)
+fi1
+fi2
+dis
+xx1=c(x1,f1*x1+fi2*x1+dis)
+for(i in 1:n){
+ xx1=c(x,fi1*x1[i-1]+fi2*x1[i-2]+dis)
+}
+xx1
+
+#MA(2)
+k=10
+x2=read.csv2("C:\\Users\\Пользователь\\Desktop\\диплом\\altaс.csv")[[1]]
+cov=function(x,k){
+ N=length(x)
+ cov=0
+ for(i in 1:(N-k)){
+ cov=cov+x[i]*x[i+k]
+ }
+ cov=cov/(N-k)
+ cov
+}
+cov(x,10)
+cor=function(x,k){
+ return(cov(x,k)/cov(x,0))
+}
+cor(x,10)
+#x2<-x2[[1]]
+n=length(x2)
+temp1=cov(x2,0)
+teta1=-cov(x2,1)/temp1
+temp2=cov(x2,0)/(1+teta1^2)
+teta2=-cov(x2,2)/temp2
+dis2=temp1/(1+teta1^2+teta2^2)
+teta1
+teta2
+dis2
+x1=3
+xx=c(x1,teta1*x1+dis2)
+for(i in 1:n){
+ xx=c(x,teta1*x2[i-1]-teta2*x2[i-2]+dis2)
+}
+xx
